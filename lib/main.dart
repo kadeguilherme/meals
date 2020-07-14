@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
               headline6: TextStyle(
                 fontSize: 20,
                 fontFamily: 'RobotoCondensed',
+                color: Colors.white,
               ),
             ),
       ),
