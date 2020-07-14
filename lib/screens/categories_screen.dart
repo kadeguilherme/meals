@@ -8,7 +8,10 @@ class CategoriesScreen extends StatelessWidget {
     //gRIDvIEW OARECIDA COM LISTVIEW
     return Scaffold(
       appBar: AppBar(
-        title: Text('Vamos cozinhar?'),
+        title: Text(
+          'Vamos cozinhar?',
+          style: Theme.of(context).textTheme.headline6,
+        ),
       ),
       body: GridView(
         padding: EdgeInsets.all(25),
