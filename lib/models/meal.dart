@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 //Enum para classifica a complexidade de faze a comida
 enum Complexity {
@@ -44,4 +45,60 @@ class Meal {
     @required this.complexity,
     @required this.cost,
   });
+
+  String get complexityText {
+    switch (complexity) {
+      case Complexity.Simple:
+        return 'Facil';
+      case Complexity.Medium:
+        return 'Normal';
+      case Complexity.Difficult:
+        return 'Dificil';
+      default:
+        return 'Desconhecida';
+    }
+  }
+
+  String get costText {
+    switch (cost) {
+      case Cost.Cheap:
+        return 'Barato';
+      case Cost.Fair:
+        return 'Justo';
+      case Cost.Expensive:
+        return 'Caro';
+      default:
+        return 'Desconhecido';
+    }
+  }
+
+  Widget get costWidget {
+    switch (cost) {
+      case Cost.Cheap:
+        return Row(
+          children: <Widget>[Icon(Icons.attach_money)],
+        );
+
+      case Cost.Fair:
+        return Row(
+          children: <Widget>[
+            Icon(Icons.attach_money),
+            Icon(Icons.attach_money),
+          ],
+        );
+
+      case Cost.Expensive:
+        return Row(
+          children: <Widget>[
+            Icon(Icons.attach_money),
+            Icon(Icons.attach_money),
+            Icon(Icons.attach_money),
+          ],
+        );
+      default:
+        return Row(
+          children: <Widget>[Icon(Icons.attach_money)],
+        );
+    }
+  }
 }

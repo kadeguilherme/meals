@@ -17,23 +17,57 @@ class MealItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
         ),
         elevation: 4,
-        margin: const EdgeInsets.all(10),
+        margin: const EdgeInsets.all(15),
         child: Column(
           children: <Widget>[
             Stack(
               children: <Widget>[
-                ClipRRect(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    topRight: Radius.circular(15),
-                  ),
-                  child: Image.network(
-                    meal.imageUrl,
-                    height: 250,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
-                )
+                Row(
+                  children: <Widget>[
+                    Container(
+                      child: Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image.network(
+                            meal.imageUrl,
+                            height: 100,
+                            width: 100,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Column(
+                      children: <Widget>[
+                        Container(
+                          width: 200,
+                          child: Text(
+                            meal.title,
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                            ),
+                            softWrap: true,
+                            overflow: TextOverflow.fade,
+                          ),
+                        ),
+                        SizedBox(height: 30),
+                        Row(
+                          children: <Widget>[
+                            Icon(Icons.schedule),
+                            SizedBox(width: 3),
+                            Text('${meal.duration} min'),
+                            SizedBox(width: 8),
+                            meal.costWidget,
+                            SizedBox(width: 8),
+                            Text(meal.complexityText),
+                          ],
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               ],
             ),
           ],
