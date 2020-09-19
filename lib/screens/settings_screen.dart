@@ -5,22 +5,34 @@ import '../models/settings.dart';
 class SettingsScreen extends StatefulWidget {
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
+
+  final Settings settings;
+  final Function(Settings) onSettingsChanged;
+  const SettingsScreen(this.settings, this.onSettingsChanged);
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  var settings = Settings();
+  Settings settings;
+  @override
+  void initState() {
+    super.initState();
+    settings = widget.settings;
+  }
 
   Widget _createSwitch(
     String title,
     String subtitle,
     bool value,
-    Function onChanged,
+    Function(bool) onChanged,
   ) {
     return SwitchListTile.adaptive(
       title: Text(title),
       subtitle: Text(subtitle),
       value: value,
-      onChanged: onChanged,
+      onChanged: (value) {
+        onChanged(value);
+        widget.onSettingsChanged(settings);
+      },
     );
   }
 
@@ -52,20 +64,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 _createSwitch(
                   "Sem lactose",
                   "So exibir refeicao com lactose",
-                  settings.isGlutenFree,
-                  (value) => setState(() => settings.isGlutenFree = value),
+                  settings.isLactoseFree,
+                  (value) => setState(() => settings.isLactoseFree = value),
                 ),
                 _createSwitch(
                   "Vegan",
                   "So exibir refeicao com Vegana",
-                  settings.isGlutenFree,
-                  (value) => setState(() => settings.isGlutenFree = value),
+                  settings.isVegan,
+                  (value) => setState(() => settings.isVegan = value),
                 ),
                 _createSwitch(
                   "Vegariana",
                   "So exibir refeicao vegerariana",
-                  settings.isGlutenFree,
-                  (value) => setState(() => settings.isGlutenFree = value),
+                  settings.isVegetarian,
+                  (value) => setState(() => settings.isVegetarian = value),
                 )
               ],
             ),
